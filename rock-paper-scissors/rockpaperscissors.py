@@ -31,11 +31,11 @@ def get_winner(call):
 
 
 # Use these functions as "command" for each button
-def pass_s():
+def pass_s(event):
     get_winner("scissors")
-def pass_r():
+def pass_r(event):
     get_winner("rock")
-def pass_p():
+def pass_p(event):
     get_winner("paper")
 
 window = tk.Tk()
@@ -49,35 +49,33 @@ win = 0
 rock = tk.Button(
     text = 'Rock',
     width = 5,
-    height = 2
+    height = 2,
+    relief = RAISED
 )
 paper = tk.Button(
     text = 'Paper',
     width = 5,
-    height = 2
+    height = 2,
+    relief = RAISED
 )
 scissors = tk.Button(
     text = 'Scissors',
     width = 5,
-    height = 2
+    height = 2,
+    relief = RAISED
 )
 # 2. Create 2 labels for the result and the number of wins
-
-winum = ('You have won ' + str(win) + ' times.')
+result = tk.Label('The computer chose ' + computerchoice + ' and you ' + result)
+winum = tk.Label('You have won ' + str(win) + ' times.')
 # 3. Arrange the buttons and labels using grid
-for i in range(3):
-    window.columnconfigure(i, weight=1, minsize=75)
-    window.rowconfigure(i, weight=1, minsize=50)
+rock.bind('<Button-1>', pass_r)
+paper.bind('<Button-1>', pass_p)
+scissors.bind('<Button-1>', pass_s)
+result.grid(sticky = nw)
+wins.grid(sticky = nw)
+rock.grid(sticky = sw)
+paper.grid(sticky = sw)
+scissors.grid(sticky = sw)
 
-    for j in range(0, 3):
-        frame = tk.Frame(
-            master=window,
-            relief=tk.RAISED,
-            borderwidth=1
-        )
-        frame.grid(row=i, column=j, padx=5, pady=5)
-
-        label = tk.Label(master=frame, text=f"Row {i}\nColumn {j}")
-        label.pack(padx=5, pady=5)
 
 window.mainloop()
