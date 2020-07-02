@@ -45,7 +45,7 @@ def get_winner(call):
         win = win+1
     # Use the output label to write what the computer did and what the result was (win, loss, tie)
     resultlabel.config(text = 'The computer chose ' + computerchoice + ' and you ' + result)
-    winum.config(text = 'You have wone ' + str(win) + ' times!')
+    winum.config(text = 'You have won ' + str(win) + ' times!')
 
 
 # Use these functions as "command" for each button
